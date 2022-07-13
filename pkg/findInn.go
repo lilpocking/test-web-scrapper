@@ -28,15 +28,13 @@ func FindInn(companyName string) (Inn []string) {
 		}
 	})
 	c.OnError(func(_ *colly.Response, err error) {
-		log.Println("Something went wrong:", err)
+		log.Println(companyName+"error: ", err)
 	})
 	c.OnRequest(func(r *colly.Request) {
 		r.Headers.Set("User-Agent", "Mozilla/5.0")
 	})
 
-	if err := c.Visit("https://www.google.com/search?q=" + companyName + "+ИНН"); err != nil {
-		log.Println(err)
-	}
+	c.Visit("https://www.google.com/search?q=" + companyName + "+ИНН")
 	unique(&Inn)
 	fmt.Println("Finded inn of "+companyName+" = ", Inn)
 
