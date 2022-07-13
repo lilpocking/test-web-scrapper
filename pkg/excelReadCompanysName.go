@@ -28,13 +28,13 @@ func StartReadAndSearchInn() error {
 				}
 				wtgr.Add(1)
 
-				go func() {
+				go func(indxCompany int, val string) {
 					list := FindInn(val)
 					if err := f.SetCellValue("Лист1", "C"+strconv.Itoa(indxCompany+1), list); err != nil {
 						log.Println(err)
 					}
 					wtgr.Done()
-				}()
+				}(indxCompany, val)
 
 			}
 			break

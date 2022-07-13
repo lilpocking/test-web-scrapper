@@ -28,7 +28,7 @@ func FindInn(companyName string) (Inn []string) {
 		}
 	})
 	c.OnError(func(_ *colly.Response, err error) {
-		log.Println(companyName+"error: ", err)
+		log.Println(companyName+" error: ", err)
 	})
 	c.OnRequest(func(r *colly.Request) {
 		r.Headers.Set("User-Agent", "Mozilla/5.0")
